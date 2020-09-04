@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi Column Navigation Documentation</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+  
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#multi-column-navigation-documentation">Multi Column Navigation Documentation</a>
+<ul>
+<li><a href="#about-multi-column-navigation">About Multi Column Navigation</a></li>
+<li><a href="#live-preview">Live Preview</a></li>
+<li><a href="#resources">Resources</a></li>
+<li><a href="#general-information">General Information</a></li>
+<li><a href="#implementation">Implementation</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html" style="max-width: 990px;">
+      <h1 id="multi-column-navigation-documentation">Multi Column Navigation Documentation</h1>
+<h2 id="about-multi-column-navigation"><strong>About Multi Column Navigation</strong></h2>
+<p>We have introduced usage of multi-column navigation in order to rectify issue of navigation going out of canvas when school had a lot of pages under one navigation topic.</p>
+<p>Multi Column Navigation allows to overwrite styling of the navigation by adding a class to the drop down when there are more than  (by default)  6 pages under a navigation topic. This styling will only apply to that particular topic, not all of them. Topics which have 6 or less pages will remain to have their original styling.</p>
+<p>It is using a JavaScript function and CSS styling that can be changed if necessary. JavaScript function has built-in functions that allow you to change the targetting as well as classes, when the code should trigger etc. The core functionality of the code is available in buildAssets and barebone template snippet can be found on PrimarySite Team CodePen.</p>
+<h2 id="live-preview"><strong>Live Preview</strong></h2>
+<iframe height="440" style="width: 100%;" scrolling="no" title="Navigation - Multi Column Drop Down Template - Squared" src="https://codepen.io/team/PSwebdevs/embed/214eb33ce4453adf02bc84e40f41d621?height=440&theme-id=dark&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" loading="lazy">
+  See the Pen <a href='https://codepen.io/team/PSwebdevs/pen/214eb33ce4453adf02bc84e40f41d621'>Navigation - Multi Column Drop Down Template - Squared</a> by PrimarySite
+  (<a href='https://codepen.io/PSwebdevs'>@PSwebdevs</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+In the above example, you can see how the Multi Column Navigation behaves. Topics Key information, Parents &amp; Children have more than 6 pages therefore they will display the drop down in a columns. By default the drop down should go into minimum of 3 columns. Any changes can be done to the CSS if necessary.
+<h2 id="resources"><strong>Resources</strong></h2>
+<p>Include for the build:</p>
+<pre><code>&lt;script type="text/javascript" src="{% theme_asset_file_from BuildAssets nav-column-min.js %}"&gt;&lt;/script&gt;
+</code></pre>
+<p>Barebones/Examples:</p>
+<p><a href="https://codepen.io/team/PSwebdevs/pen/d819a7a8efd6adda96a58359cc6904af">Barebone CSS/JS only</a><br>
+<a href="https://codepen.io/team/PSwebdevs/pen/214eb33ce4453adf02bc84e40f41d621">Multi Column Drop Down Template - Squared</a><br>
+<a href="https://codepen.io/team/PSwebdevs/pen/a3ad218b993da799bb03b872d7248c56">Multi Column Drop Down Template - Rounded</a></p>
+<h2 id="general-information"><strong>General Information</strong></h2>
+<p>Barebones have been optimised to support column navigation drop down from 6+ pages up to 30 pages. Anything above is not accounted for by the barebones, however script includes an additional class if there are more than 30 pages within the navigation topic drop down which enables person implementing the code to do additional changes on the drop downs that have more than 30 pages.</p>
+<p>CSS Explanation:<br>
+Script adds a custom class to the navigation topic drop down. It has  been implemented using <a href="https://www.w3schools.com/css/css_grid.asp">CSS grid</a> and it overrides the existing styling of the navigation by resetting drop downs positioning and separating the pages into 3 individual columns.</p>
+<p>Default CSS gives appropriate gaps, padding and sticks the navigation to the right hand side. All of the scripts styling can be changed to match the build.</p>
+<p>Default CSS also includes a simple height based media query which supports up to 30 pages up to 600px viewport height.</p>
+<p>JS Explanation:<br>
+Scripts entire core functionality is stored within buildAssets and it can be pulled using the script include. The only thing that needs to be put on the side are the options and calling of the function or alternatively just calling the function.</p>
+<p>If you call in the navigation function multiColumnNav(); by default options are as follows:</p>
+<ul>
+<li>targetItem: “.main-nav &gt; ul &gt;li &gt;ul” <em><strong>Targets navigation topic drop down</strong></em></li>
+<li>pageCount: 6 <em><strong>Sets the amount of pages before going into columns</strong></em></li>
+<li>maxPageCount: 30 <em><strong>Sets the amount of max pages and adds additional class to the drop down</strong></em></li>
+<li>navParentClass: “nav-extended-reset”  <em><strong>Sets class name for parent of the drop down (li)</strong></em></li>
+<li>navClass: “nav-extended” <em><strong>Sets class name for drop down UL</strong></em></li>
+<li>navClassMax: “nav-extended-max” <em><strong>Adds class name for drop down which meets maxPageCount criteria</strong></em></li>
+</ul>
+<p>Barebone CodePen snippet contains options by default, these can be changed if needed. All options are commended appropriately and explain their purpose.</p>
+<h2 id="implementation"><strong>Implementation</strong></h2>
+<p><em>(Resources and examples can be found in the “Resources” section above.)</em></p>
+<p>To implement multi column navigation on your build you will require the following:</p>
+<ul>
+<li>Script include of the core functionality</li>
+<li>Barebone CSS/JS only</li>
+</ul>
+<p>1 - Go to Barebone CSS/JS only codepen and copy the JavaScript section.<br>
+2 - Open theme editor and create custom.js file if it doesn’t already exist.<br>
+3 - Paste in JS code copied earlier inside of custom.js file and save.<br>
+4 - Open base.html and paste in the script include nav-column-min.js in the scripts section.<br>
+<em>Make sure that it sits above custom.js otherwise you will call a function that isn’t available yet.</em><br>
+5 -  Go back to the Barebone CSS/JS only codepen and copy all of the CSS styling.<br>
+6 - Open style.css and underneath all of the navigation styling paste in CSS code from the CodePen.<br>
+7. All done <em>You might need to tweak the styling depending on your build</em></p>
+<p><strong>Demo Preview</strong></p>
+<iframe height="440" style="width: 100%;" scrolling="no" title="Navigation - Multi Column Drop Down Template - Squared" src="https://codepen.io/team/PSwebdevs/embed/214eb33ce4453adf02bc84e40f41d621?height=440&theme-id=dark&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true" loading="lazy">
+  See the Pen <a href='https://codepen.io/team/PSwebdevs/pen/214eb33ce4453adf02bc84e40f41d621'>Navigation - Multi Column Drop Down Template - Squared</a> by PrimarySite
+  (<a href='https://codepen.io/PSwebdevs'>@PSwebdevs</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+    </div>
+  </div>
+</body>
+
+</html>

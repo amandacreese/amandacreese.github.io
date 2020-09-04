@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shared Content - Quick Implementation Guide</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#shared-content---quick-implementation-guide">Shared Content - Quick Implementation Guide</a>
+<ul>
+<li><a href="#about-shared-content--this-guide">About Shared Content & This Guide</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="shared-content---quick-implementation-guide">Shared Content - Quick Implementation Guide</h1>
+<h2 id="about-shared-content--this-guide">About Shared Content &amp; This Guide</h2>
+<p>Shared content allows for creation a special page on a Trust website which contents can get pulled through and displayed on target sites.</p>
+<p>This is just a quick implementation guide and the full documentation can be found <a href="https://docs.google.com/document/d/1oZr-mvMLrj8OH99B7uoAKOpZRqSv3xmL1DcA9FIkswg/">here</a><br>
+It will allow for a quick implementation of shared content without having to follow all of the steps in full documentation. This guide assumes that you know you have some understanding of CMS.</p>
+<h3 id="trust-site-implementation-content-host">Trust Site Implementation (Content Host)</h3>
+<p><em>You might need to change the special page file name and/or breadcrumbs to match</em></p>
+<ol>
+<li>Go into your trust site and go into theme editor.</li>
+<li>Upload contents of Trust Site folder from Shared Content zip <strong>(EXCEPT FOR THE CSS FILE, THAT WILL NEED TO BE PASTED INTO EXISTING STYLESHEET &amp; for app js.txt FILE WHICH CONTENTS NEED TO BE PASTED AT THE BOTTOM OF APP.JS)</strong>.  This should contain the following files:</li>
+</ol>
+<ul>
+<li><code>content-variable,js</code></li>
+<li><code>shared-content.css</code></li>
+<li><code>HIDDEN-TOPIC.html</code></li>
+<li><code>special.trust-documents.html</code></li>
+<li><code>for app js.txt</code></li>
+</ul>
+<ol start="3">
+<li>
+<p>Open <code>special.trust-documents.html</code> file and change line 1 so it matches your theme name e.g:<br>
+<code>{% extends "CHANGETOCURRENTTHEME/base.html" %}</code><br>
+to<br>
+<code>{% extends "MyTrustTheme/base.html" %}</code></p>
+</li>
+<li>
+<p>In theme editor create <code>content-page.page.topic:hidden-topic.html</code> and paste in contents of the <code>HIDDEN-TOPIC.html</code> file<br>
+(<em>Due to naming limitations in Windows, the file couldn’t be named correctly because of the <code>:</code> in the name</em>)</p>
+</li>
+<li>
+<p>Open your global stylesheet - that might be <code>style.css</code> or <code>style-global.css</code> for older builds, and at the very bottom of that stylesheet paste in the contents of <code>shared-content.css</code> file. This contains all necessary styling for it. You might need to change colours under <code>Link to Page Section</code> to match the theme, however colours used in this example are quite generic and should work fine for most sites.</p>
+</li>
+<li>
+<p>Open app.js file and at the bottom of that file paste in the contents of <code>for app js.txt</code> at the bottom of the file.</p>
+</li>
+<li>
+<p>Now go into PS Admin -&gt; Website Admin and create a hidden topic. The following code should be helpful: <code>Hidden Topic\hidden-topic|| Trust Documents</code></p>
+</li>
+<li>
+<p>In one of the topics e.g. create a page that is named the same as the one in hidden topic.</p>
+</li>
+<li>
+<p>Once above page is created go into page metas and create a redirect to <code>/special/trust-documents/</code> this needs to match the name of the special page file.</p>
+</li>
+<li>
+<p>Link up base slug to the page in hidden topic. This will allow for editing of the page.</p>
+</li>
+<li>
+<p>If the trust documents page doesn’t have any documents, then edit page and add the following text : <code>Welcome to TRUST NAME HERE policy page. Policy documents will be updated here soon</code></p>
+</li>
+<li>
+<p>Once all of the above is complete, go into <code>content-variable.js</code> and replace the url with in there with the one linking to the page in hidden topic (<em>it needs to be final URL not secure</em>)<br>
+e.g. <code>https://www.wsat.org.uk/trust-documents/</code></p>
+</li>
+</ol>
+<p>so the <code>content-variable.js</code> looks like this:</p>
+<p><code>window.PrimarySiteBuildAssets.insertSharedContent(</code><br>
+<code>'https://www.wsat.org.uk/trust-documents/',</code><br>
+<code>'#shared-wrapper'</code><br>
+<code>);</code></p>
+<p>That’s all for trust implementation.</p>
+<h3 id="school-site-implementation-content-receiver">School Site Implementation (Content Receiver)</h3>
+<p><em>You might need to change the special page file name and/or breadcrumbs to match</em></p>
+<ol>
+<li>Go into the schools site and go into theme editor</li>
+<li>Upload contents of the School Site folder of the Shared Content zip  <strong>(EXCEPT FOR for app js.txt FILE WHICH CONTENTS NEED TO BE PASTED AT THE BOTTOM OF APP.JS)</strong> This should contain the following files:</li>
+</ol>
+<ul>
+<li><code>content-variable.js</code></li>
+<li><code>for app js.txt</code></li>
+<li><code>special.trust-documents.html</code></li>
+</ul>
+<ol start="3">
+<li>Open <code>special.trust-documents.html</code> file and change line 1 so it matches your theme name e.g:<br>
+<code>{% extends "CHANGETOCURRENTTHEME/base.html" %}</code><br>
+to<br>
+<code>{% extends "MyTrustTheme/base.html" %}</code></li>
+<li>Paste in contents of the <code>for app js.txt</code> at the bottom of the <code>app.js</code> file.</li>
+<li>Go back to your site, and in one of the topics create a page that is named the same as the one on the trust site.</li>
+<li>Once above page is created go into page metas and create a redirect to <code>/special/trust-documents/</code> this needs to match the name of the special page file.</li>
+<li>Once all of the above is complete, go into <code>content-variable.js</code> and replace the url with in there with the one that is in the <strong>TRUST SITE</strong> (<em>it needs to be final URL not secure</em>)<br>
+e.g. <code>https://www.wsat.org.uk/trust-documents/</code></li>
+</ol>
+<p>so the <code>content-variable.js</code> looks like this:</p>
+<p><code>window.PrimarySiteBuildAssets.insertSharedContent(</code><br>
+<code>'https://www.wsat.org.uk/trust-documents/',</code><br>
+<code>'#shared-wrapper'</code><br>
+<code>);</code></p>
+<p>That is all for School implementation.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>

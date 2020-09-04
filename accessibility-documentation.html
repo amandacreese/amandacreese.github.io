@@ -1,0 +1,354 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessibility Documentation</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="accessibility-documentation">Accessibility Documentation</h1>
+<h2 id="introduction">Introduction</h2>
+<p><em>"Accessibility is the practice of making your websites usable by as many people as possible. We traditionally think of this as being about people with disabilities, but the practice of making sites accessible also benefits other groups such as those using mobile devices, or those with slow network connections.</em></p>
+<p><em>You might also think of accessibility as treating everyone the same, and giving them equal opportunities, no matter what their ability or circumstances. Just as it is wrong to exclude someone from a physical building because they are in a wheelchair (modern public buildings generally have wheelchair ramps or elevators), it is also not right to exclude someone from a website because they have a visual impairment. We are all different, but we are all human, and therefore have the same human rights.</em></p>
+<p><em>Accessibility is the right thing to do. Providing accessible sites is part of the law in some countries, which can open up some significant markets that otherwise would not be able to use your services or buy your products."</em><br>
+– Extract from <a href="https://developer.mozilla.org/en-US/docs/Learn/Accessibility/What_is_accessibility">MDN web docs</a></p>
+<h3 id="wcag-guidelines">WCAG Guidelines</h3>
+<p>The main guidelines for accessibility are WCAG 2.0 that were released December 2008. In June 2018 there was an additional release to introduce support for new features. These guidelines are known as WCAG 2.1 and together with 2.0 provide the entire accessibility guideline documentation.</p>
+<p><a href="https://www.w3.org/TR/WCAG20/">WCAG 2.0 Guidelines</a><br>
+<a href="https://www.w3.org/TR/WCAG21/">WCAG 2.1 Guidelines</a></p>
+<h3 id="accessibility-classifications">Accessibility Classifications</h3>
+<p>There are three classifications for achieving the WCAG 2.0 and 2.1 guidelines, these are A, AA and AAA with a breakdown below of what they entail.</p>
+<p><strong>Level A = some impact on design</strong></p>
+<ul>
+<li>This is the minimum level of accessibility to be able to achieve the goal of hitting the WCAG 2.1 criteria.</li>
+</ul>
+<p><strong>Level AA = Medium impact on design</strong></p>
+<ul>
+<li>This is the medium ground, some areas we are already achieving this, it also has the least impact on design, and can be applied more generally.</li>
+</ul>
+<p><strong>Level AAA = High/Extreme impact on design</strong></p>
+<ul>
+<li>This could be classed as extreme level of accessibility, more devoted for websites that are aimed at being accessible such as <a href="https://www.rnib.org.uk/">RNIB</a> etc.</li>
+<li>Would more be tailored to bespoke designs as it would need to be bespoke for each website.</li>
+</ul>
+<p>PrimarySites approach to accessibility is focused primarily on the website and not the CMS.</p>
+<h3 id="primarysite’s-commitment-statement-for-accessibility">PrimarySite’s Commitment Statement for Accessibility</h3>
+<p>All Trust websites from September 1st 2018 must strive as much as possible to reach the accessibility standards as set out by the government guidance to WCAG 2.1 level AA. A decision has also been made to ensure that all SEN websites meet this criteria from the 1st August 2020. It is estimated that there will be around 3 trust/SEN websites every month.</p>
+<h3 id="additional-documentation">Additional Documentation</h3>
+<ul>
+<li>Case Studies == link to be added ==</li>
+<li>Assistive technologies ==link to be added ==</li>
+<li>Youtube WEBVTT documentation <mark>link to be added</mark></li>
+</ul>
+<h2 id="initial-requirements">Initial Requirements</h2>
+<p>In every website that we build, where possible we should be striving to achieve modern web standards, of course because of our customers and our customers requirements this might not always be 100% achievable, all we can do is try.<br>
+To help us achieve as much of an accessible website as possible there are some steps and practices that we need to undertake.</p>
+<ul>
+<li>Each of our website templates uses the <code>&lt;html lang="en"&gt;</code> to set the defined language of copy.</li>
+<li>Each website template should have <code>user-scalable=no</code> removed from the viewport meta in the header of each build.</li>
+<li>HTML should be valid and validated, we can check this using <a href="https://validator.w3.org/">W3C HTML validator</a>. This will help check to make sure the correct code syntax has been used and tags have been opened and closed correctly.</li>
+<li>It is important that any IDs used within the template are unique, conflicts in the code can happen if the ID is declared more then once on the page.</li>
+<li>HTML is written in the order that it appears within the browser.</li>
+<li>Semantic HTML is used for it’s correct purpose see <a href="#semantic-html">Semantic HTML</a>.</li>
+<li>CSS and HTML are separated where possible, outside of widgets and iFrames provided to us by schools and trusts, inline styling should be avoided.</li>
+<li>Within the design a clear visual hierarchy is portrayed, which goes throughout the design regardless of the screen size the design is on.</li>
+<li>When updating a website, there is a need to remove the vertical line on the title. Currently the screen reader will read this out,<br>
+== insert sound clip here ==</li>
+</ul>
+<h3 id="semantic-html">Semantic HTML</h3>
+<p>Within HTML5 there has been the introduction of semantic roles that enable assistive technologies to be able to understand straight away what role they are within the website.</p>
+<ul>
+<li><code>&lt;article&gt;</code> - repeated content which can be used on their own, twitter is an example where articles are used.</li>
+<li><code>&lt;aside&gt;</code> - related to main content, but should not be necessary to understand the content.</li>
+<li><code>&lt;button&gt;</code> - A button is an element used to perform actions such as,
+<ul>
+<li>submitting a form</li>
+<li>opening a dialog</li>
+<li>cancelling an action</li>
+<li>performing a command<br>
+An example of application is search and translate within our websites.</li>
+</ul>
+</li>
+<li><code>&lt;div&gt;</code> and <code>&lt;spans&gt;</code> - these tags do not have any semantic meaning and can be used as general building blocks. If it’s required a role can be assigned to it using <code>role=""</code>, but it is much better to use the correct semantic code.</li>
+<li><code>&lt;footer&gt;</code> - is a tag used to indicate the footer of a website or a website element and can be used multiple times in website markup where appropriate.</li>
+<li><code>&lt;header&gt;</code> - is a tag used to indicate the header of the website or a website element and can be used multiple times in website markup where appropriate.</li>
+<li><code>&lt;main&gt;</code> - is a tag used to indicate the main content of page.</li>
+<li><code>&lt;nav&gt;</code> - is a tag used to identify any major group of links used for navigation, it can be used multiple times in website markup where appropriate.</li>
+<li><code>&lt;section&gt;</code> - is a tag used to identify major sections of a page (this is particularly relevant to the homepage).</li>
+</ul>
+<h3 id="heading-tags">Heading Tags</h3>
+<p>The heading tags are used to define headings within your website. They can be used by screenreader users to skip to content based on heading, and work in a similar way way to a book index.</p>
+<ul>
+<li>The heading tags go from <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code></li>
+<li><code>&lt;h1&gt;</code> defines the most important heading, whilst <code>&lt;h6&gt;</code> defines the least important.</li>
+<li>Headings should never be skipped, so going from <code>&lt;h2&gt;</code> to <code>&lt;h4&gt;</code> shouldn’t happen.</li>
+<li>There should only ever be 1 <code>&lt;h1&gt;</code> per page, this is normally the page title.</li>
+</ul>
+<h3 id="additional-tags">Additional Tags</h3>
+<ul>
+<li><code>&lt;p&gt;</code> - this tag defines a paragraph which is a block level element. Browsers automatically add a single line space between each <code>p</code> that is used.</li>
+<li><code>&lt;ul&gt;</code> - this tag defines an unordered list, this is used in conjunction with the <code>&lt;li&gt;</code> tag. Without styling this is rendered as a bulleted list. It is typically used on items that don’t have a meaningful order in the list.</li>
+<li><code>&lt;ol&gt;</code> - this tag defines an ordered list of items, this is used in conjunction with the <code>&lt;li&gt;</code> rag. Without styling this is rendered as a numbered list. It is typically used on items that have a meaningful order.</li>
+<li><code>&lt;li&gt;</code> - this tag defines an item in a list and must be contained in a parent element, either a <code>&lt;ul&gt;</code> or <code>&lt;ol&gt;</code>, depending on which one they are used in depends how they are displayed.</li>
+<li><code>&lt;a&gt;</code> - this tag defines an anchor which creates a hyperlink, this could be internal, external, email addresses or anything else that a URL can address.</li>
+<li><code>&lt;img&gt;</code> - this tag embeds an image into the page, it is followed by a <code>src</code> attribute and, for accessibility, it requires an appropriate <code>alt</code> description.</li>
+<li><code>&lt;video&gt;</code>- this tag embeds a media player which supports video playback, it is followed by a <code>src</code> attribute to dictate where the content is coming from.  This tag can be used for audio as well, but for best practice the <code>&lt;audio&gt;</code> tag should be used.</li>
+<li><code>&lt;audio&gt;</code> - this tag embeds an audio player within the website and is used to embed audio files. It is followed by a <code>&lt;src&gt;</code> attribute to dictate where the content is coming from.</li>
+</ul>
+<h2 id="aria-attributes">ARIA Attributes</h2>
+<p>ARIA (Accessible Rich Internet Applications) is a set of attributes that can be added to web content to make it more accessible to people with disabilities.</p>
+<h3 id="accessibility-user-tree">Accessibility User Tree</h3>
+<p>An accessibility user tree is part of your websites DOM, it is made by the browser and lists all accessible objects that is then exposed to assistive technologies. To view this tree, open the Chrome Developer Tools and under the elements tab click the accessibility tab. ARIA works by changing the standard DOM tree.</p>
+<p>Where semantic HTML is used, an element doesn’t need any additional role or ARIA label unless the label is confusing.</p>
+<p>More information about the accessibility tree can be found through <a href="https://developers.google.com/web/fundamentals/accessibility/semantics-builtin/the-accessibility-tree">Google Developer Docs</a></p>
+<h3 id="aria-tags">Aria Tags</h3>
+<ul>
+<li><code>aria-label</code> - is an attribute that can be used when you have some kind of visual indication to an items purpose, or where the message might get confusing to the screen reader user.</li>
+<li><code>aria-labelledby</code> - allows us to create a relationship between elements regardless of their relationship within the DOM. For example a section will not necessarily have a screen reader friendly description however by using <code>aria-labelledby</code> and giving the unique id to an element we can give a friendlier name.  By using this method duplication can be avoided. The example that follows uses this ARIA label and if you update the content of the <code>&lt;h2&gt;</code> tag you update the section tag automatically. <code>&lt;section aria-labelledby="meet-the-staff"&gt;</code> <code>&lt;h2 id="meet-the-staff"&gt;Meet the staff&lt;/h2&gt;</code>. It is important to remember that each <code>aria-labelledby</code> entry must be unique.</li>
+<li><code>aria-describedby</code> - is an attribute that can be used to provide an accessible description, for example a video or audio transcript.</li>
+<li><code>aria-hidden</code> - this is an attribute that can be combined with <code>true</code> ( <code>aria-hidden="true"</code>) to hide something from the accessibility tree, this maybe something that has no value to the screen reader user, is duplicated content or is an of screen or collapsable element.</li>
+</ul>
+<h2 id="images">Images</h2>
+<p>An image can be used in multiple ways in website design and layout. It could be used to convey a message, or for a purely aesthetic reason. Images are broken down into two main categories.</p>
+<p><strong>Decorative</strong></p>
+<ul>
+<li>Images that don’t serve a purpose such as a dividing line graphic.</li>
+<li>A background or for aesthetic purposes, such as our illustrated website designs.</li>
+<li>Contains no important informative text.</li>
+</ul>
+<p><strong>Functional</strong></p>
+<ul>
+<li>Present for a reason, emotion, context to a story.</li>
+<li>Icons, buttons, product images.</li>
+<li>Text, infographics, data charts.</li>
+</ul>
+<h3 id="image-examples">Image Examples</h3>
+<p><strong>Example 1 - Functional</strong></p>
+<ul>
+<li>Example 1 could be classed as a visual message or product image, this may portray an emotion, a visual representation or be part of a reference point in a story or shop. It is important that a clear message is represented within the image reference, an example of how to implement this can be found below the image.</li>
+</ul>
+<p><strong><img src="https://lh3.googleusercontent.com/4b46-Ja7ZE0gfgpAEk8ps-92h91IBo0nelSZZ4SBue6Myei4_FzbHBhbhIrRjpWOPThUjm68vOM1-5tl-bKekCZJr3KeD9BoE8lHE94b9SykecErudZRyVDUNMBNpqrzjb0v6Ba2" alt=""></strong></p>
+<pre><code>&lt;img src="pancakes.png" alt="Stack of blueberry pancakes with powdered sugar"&gt;
+</code></pre>
+<p><strong>Example 2 - Decorative</strong></p>
+<ul>
+<li>Example 2 is a decorative image, this will be something that adds no additional information to a story and contains no text. An example could be a decorative dividing line, this type of image may still be embedded through the img tag. It is important that this type of image still has an alt-tag even if it is empty, this will be ignored by the screen reader.</li>
+</ul>
+<p><img src="https://lh4.googleusercontent.com/nOVKY7vBOyKZTWDMv8EBqCxA-VFaV0TErQZ2uR_Q2jC3V_S1XiAgFuOqzwNSemBp-Bv0holl2VNfPppJ4IA2aH3eS6RPYtlyJ-zEssNq6qySD-oEh9k1_Qm_WOPv4j0YKLUIc59G" alt=""></p>
+<pre><code>&lt;img src="flourish.png" alt=""&gt;
+</code></pre>
+<p><strong>Example 3 - Decorative</strong></p>
+<ul>
+<li>Example 3 is a background image, again like image type two, should contain no text, the difference between type two and type three is that this is executed through CSS.</li>
+</ul>
+<p><img src="https://primarysite-stage.s3.amazonaws.com/theme/NorthwoodTemplate/hula-boy.png" alt=""></p>
+<pre><code>.hoop-kid {
+    background: url(hula-boy.png) top center no-repeat;
+  }
+</code></pre>
+<p><strong>Example 4 - Decorative with a text overlay</strong></p>
+<iframe height="365" width="100%" scrolling="no" title="Accessibility Documentation - Example" src="https://codepen.io/team/PSwebdevs/embed/58bd491ac7f14029622520e1eb7ab757?height=265&amp;theme-id=dark&amp;default-tab=result" allowfullscreen="true">&#10;  See the Pen <a href="https://codepen.io/team/PSwebdevs/pen/58bd491ac7f14029622520e1eb7ab757">Accessibility Documentation - Example</a> by PrimarySite&#10;  (<a href="https://codepen.io/PSwebdevs">@PSwebdevs</a>) on <a href="https://codepen.io">CodePen</a>.&#10;</iframe>
+<p>Where a background image is used in conjunction with a text overlay, the image itself could be classed as decorative, but it is important that the image when implemented through CSS has a background colour to it, this means that if the image fails to load for whatever reason the text will still be legible, a colour opposite to the text colour is usually suitable, so if the text is white, a black background is appropriate. See also <a href="#text-through-image">Text through Image</a></p>
+<h3 id="text-through-image">Text through Image</h3>
+<p>Where an image containing text has to be done through CSS, as an example where a font has been used that is quite decorative, an aria-label can be added into the code segment where the background image is going to be used.</p>
+<p><code>&lt;span class="school-name" aria-label="School Name Here"&gt;&amp;nbsp;&lt;/span&gt;</code></p>
+<p>This will mean that a screen reader will be able to portray to the user the important information that this image contains.</p>
+<h3 id="long-alt-text-for-an-image---infographics-charts-and-graphs">Long alt text for an image - infographics, charts and graphs</h3>
+<p>With trust websites, they are looking for more unique ways to display information. This may often be a more designed approach which conveys information across to a person in an aesthetically pleasing way, through graphs, charts or infographics.</p>
+<p>It is important that any of these images that are uploaded through either a background image or within the <code>&lt;img&gt;</code> tag contains the relevant information to portray this image over to people of different abilities.</p>
+<ul>
+<li>Each image needs to have an alt attribute, done either through an <code>alt=""</code> tag or through an <code>arial-label=""</code> tag.</li>
+<li>Whichever is used of these suggested methods, it is important that a clear indication is made that the information is to follow. e.g.<br>
+<code>&lt;img src="chart.png" alt="A shell bar chart, information to follow"/&gt;</code></li>
+<li>A further piece of code needs to be added to translate the visual information into text information please see the below example.</li>
+</ul>
+<p>An Example of how the information could be translated is available on codepen below.</p>
+ <iframe height="365" width="100%" scrolling="no" title="Table Example" src="https://codepen.io/acreese/embed/bd85e15eab083f9b3f267a6bde325268?height=265&amp;theme-id=dark&amp;default-tab=result" allowfullscreen="true">&#10;  See the Pen <a href="https://codepen.io/acreese/pen/bd85e15eab083f9b3f267a6bde325268">Table Example</a> by Amanda&#10;  (<a href="https://codepen.io/acreese">@acreese</a>) on <a href="https://codepen.io">CodePen</a>.&#10;</iframe>
+<p>If you look into the above example and look at the HTML you will see that below the image tag is a table with the translated information, the table has a class of sr-only so will not show on desktop or responsive but will be read by screen readers.</p>
+<h3 id="image-section-summary">Image Section Summary</h3>
+<ul>
+<li>Every image that is embedded through the website theme requires an alt tag even if it is an empty alt tag because the image is decorative, this is because a screen reader will skip <code>alt=""</code>, where as if it doesn’t have an alt tag at all the screenreader will make an attempt at reading the image.</li>
+<li>An <code>alt=""</code> tag is important for portraying a text representation of an image, it must be descriptive but you do not need to include in the description that this is an image as that is implied already.</li>
+<li>Screen readers will only really read up to 125 characters of an alt text tag. If the description is going to be longer, because the image is more complex, a separate p tag set with the class of <code>sr-only</code> following the content is more appropriate.</li>
+<li>Different types of images have to be handled differently.</li>
+<li>Any background image that is going to have text as an overlay needs to have a background colour associated with it, this is in case the image fails to load, the text will still be legible.</li>
+</ul>
+<blockquote>
+<p>It is worth noting that there are some significant benefits outside of<br>
+screenreader usage for the website and that is better SEO.</p>
+<ul>
+<li>Search engine crawlers don’t look at images, they use the alt text of the image and then presents it to the user within the search.</li>
+<li>It promotes a higher ranking by following relevant text and being better</li>
+</ul>
+</blockquote>
+<h2 id="links">Links</h2>
+<p>Links are used to guide the user around or away from the website, they may form part of a user journey, aiming to get a user from a to b, or they may be part of the bigger website picture.<br>
+From a visual hierarchy it is important that there is a difference in style between what is a link to a part of the website or a part of the page, compared to what would be classed as a button which is interactive but doesn’t necessarily navigate the user to a different part of the website.<br>
+The importance into spending time into links and how they are presented to the user, can make a user journey for any type of user really pleasant to experience.</p>
+<h3 id="link-best-practices">Link Best Practices</h3>
+<ul>
+<li>Links should not have any fixed height or fixed width attached to it, as part of accessibility certain users will enable zoom in features to be able to easily read the content of the element. Heights or widths will cause these elements to break.</li>
+<li>Links should not contain <code>&lt;p&gt;&lt;/p&gt;</code> tags, this is prominently for screenreader purposes. A screenreader will encounter these and reads out what ever is within the content as a paragraph potentially confusing the user.</li>
+<li>It could be considered a poor user experience if any sort of media, or any link takes the user off site, this can be fixed in the alt tag by adding in some additional code to explain in more detail what may happen to the user, the screenreader technology will read this out before the user confirms if they want to carry on further, an example of this could be,<br>
+<code>&lt;a href="https://www.google.co.uk/" alt="Visit the Google website external site" rel="noopener" target="_blank"&gt;Visit the google website&lt;/a&gt;</code></li>
+<li>Any link should have a minimum hit area of 44px, this is more aimed at users with motor function issues and allows a user a better chance of hitting the link area. Several examples of this. can be found in the codepen below.</li>
+</ul>
+<iframe height="300" width="100%" scrolling="no" title="Buttons" src="https://codepen.io/acreese/embed/e2317df5da7cdaf9679d6bb91fc3820f?height=265&amp;theme-id=dark&amp;default-tab=result" allowfullscreen="true">&#10;  See the Pen <a href="https://codepen.io/acreese/pen/e2317df5da7cdaf9679d6bb91fc3820f">Buttons</a> by Amanda&#10;  (<a href="https://codepen.io/acreese">@acreese</a>) on <a href="https://codepen.io">CodePen</a>.&#10;</iframe>
+<h3 id="multi-line-text-links">Multi Line Text Links</h3>
+<p>== This needs phrasing better ==</p>
+<ul>
+<li>Depending on the user behaviour, depends what a user might anticipate is the clickable area.</li>
+<li>In this instance, links to certain pages can become confusing as they have multiple lines of text in</li>
+<li>When read by a screenreader without any intervention, the link will read ‘Temple Hill Primary Academy View Temple Hill’</li>
+<li>By adding in <code>aria-label="View Temple Hill Primary Academy"</code> to the a tag of this element instead of it reading out all text in the a tag, it’ll ignore it and only read out the aria label.</li>
+<li>In this example, both temple hill and west hill have been done this way and oakfield has not.</li>
+</ul>
+<iframe height="400" width="100%" scrolling="no" title="Section - Accessibility" src="https://codepen.io/acreese/embed/37af3c1a67271979b0576fc11b9074af?height=265&amp;theme-id=dark&amp;default-tab=result" allowfullscreen="true">&#10;  See the Pen <a href="https://codepen.io/acreese/pen/37af3c1a67271979b0576fc11b9074af">Section - Accessibility</a> by Amanda&#10;  (<a href="https://codepen.io/acreese">@acreese</a>) on <a href="https://codepen.io">CodePen</a>.&#10;</iframe>
+<p>Example of how screenreader will read these.</p>
+<figure>
+    <figcaption>Listen to Temple Hill</figcaption>
+    
+    
+</figure> 
+== needs converting when downloaded ==
+<figure>
+    <figcaption>Listen to Oakfield</figcaption>
+    
+    
+</figure>
+== needs converting when downloaded ==
+<h3 id="short-text-links">Short Text Links</h3>
+<p>Short text for accessibility could be confusing to the user, but it also could have a negative affect on a website’s SEO. Sometimes however this isn’t always achievable as putting a full understandable title could compromise the design and layout.</p>
+<p><strong>Examples of short text links are</strong></p>
+<ul>
+<li>Click here</li>
+<li>Read more</li>
+<li>Info</li>
+</ul>
+<p>This is completely ok, as from a visual standpoint the link will be grouped with the relevant item it is representing and more detailed information can be placed within the alt tag.</p>
+<p><code>&lt;a href="{% calendar_grid_url %}" alt="Visit our Calendar to Read More"&gt;Read more&lt;/a&gt;</code></p>
+<p>Where possible though, we should always try and rephrase the link text so the purpose is clear.</p>
+<p><code>&lt;a href="{% calendar_grid_url %}" &gt;View Our Calendar&lt;/a&gt;</code></p>
+<h3 id="image-based-links">Image Based Links</h3>
+<p>Images are sometimes used in place of a text link, an example of this is the home link. This may not have any text associated with it as it is just using an image of the school or trust logo.</p>
+<ul>
+<li>Where an image is used as a link, alt text must be used to describe the image and link.  <code>&lt;a href="/" class="home-link" title="School Name" alt=”School Name Home”&gt;&lt;/a&gt;</code></li>
+<li>In the alt description of the link you do not need to indicate that it is a link or that it is an image as these are both implied by the screenreader.</li>
+</ul>
+<p>Where an element is required that is a visual indication of an action, such as a burger menu, an aria label attribute should be included to help assistive technologies indicate its purpose.</p>
+<ul>
+<li><code>&lt;button aria-label="menu" class="burger"&gt;&lt;/button&gt;</code></li>
+</ul>
+<p>More about aria labels can be found on <a href="https://developers.google.com/web/fundamentals/accessibility/semantics-aria/aria-labels-and-relationships">this website page</a>.</p>
+<h2 id="navigation">Navigation</h2>
+<p>As part of evolving designs and user journeys there are now several different types of navigations and navigation roles.<br>
+The different types of navigation help a variety of users navigate the website.</p>
+<ul>
+<li><strong>Main Navigation</strong>, helps users find the important pages within the top level navigation. This can be presented in a side bar, header or burger type navigation.</li>
+<li><strong>Sitemap</strong>, this is a different pattern of navigation that should display everything within the site, this is a much more simple format and gives a user a much more visual outlay of what is within the website.</li>
+<li><strong>Breadcrumbs</strong>, these show the user where they are within the hierarchy of the page, particularly useful for websites that have multi levels.</li>
+<li><strong>Related Navigation</strong>, this shows the user what other pages are within the selected navigation menu. This should be top level pages only and not subpages as this will dilute the message for the user.</li>
+</ul>
+<p>With all types of navigation, it is important to follow some guidelines to help users of different abilities navigate the website.</p>
+<ul>
+<li>Use the navigation Semantic HTML see semantic HTML</li>
+<li>Set the correct aria-label for each navigation, this is particularly important if there is more then one instance of navigation on the website.
+<ul>
+<li>The main navigation can be set  <code>&lt;nav class="main-nav" aria-label="main"&gt;&lt;/nav&gt;</code>,</li>
+<li>The related navigation can be set, <code>&lt;nav class="related-nav" aria-label="related"&gt;&lt;/nav&gt;</code></li>
+</ul>
+</li>
+<li>In a <code>&lt;nav&gt;&lt;/nav&gt;</code> setting, appropriate semantic elements should be used, most navigation patterns rely on unordered lists and anchor tags.</li>
+</ul>
+<h2 id="keyboard-operation">Keyboard Operation</h2>
+<p>As part of supporting different types of accessibility, it is highly recommended that a website can be operable by keyboard, the user types that this supports can be broken down into three categories,</p>
+<ul>
+<li><strong>A Power User</strong><br>
+This is a type of user that prefers the speed of navigation through keyboard movement.</li>
+<li><strong>A User with Movement Disorders</strong><br>
+This is a type of user that uses keyboard operation to help navigate with better procession.</li>
+<li><strong>Other Types of Assistive Technology</strong><br>
+Whilst strictly not a user, a lot of the other assistive technologies that are in use, such as voice recognition, generates keystrokes that act as keyboard usage.</li>
+</ul>
+<p>To help facilitate these users the following should be recognised.</p>
+<ul>
+<li>In each template there should be a stylised <code>a:focus</code> element, this will be set by default to a certain border width which shouldn’t change, what will change is the colour of the border, this should be the opposite of the colour of the design to stand out.</li>
+<li>All interact-able elements should be focusable.</li>
+<li>There should be no keyboard traps. A. keyboard trap is where a user can get stuck in a box and is unable to navigate their way out.</li>
+<li>Have a logical tab order, this will follow source order if you don’t do anything.  Which should be read left to right, top to bottom, this is why it’s important to make sure your HTML follows the semantic order.</li>
+</ul>
+<h3 id="tabindex">Tabindex</h3>
+<p>The <code>tabindex</code> is a global attribute that can be applied to an element and indicates that that element can be focusable within the content.  This is normally done on elements that may not naturally fall within the accessibility tree.</p>
+<p>There are three main values within the <code>tabindex</code> attribute.</p>
+<ul>
+<li><code>tabindex="-1"</code> is a negative value, means that the element is not reachable via keyboard navigation.</li>
+<li><code>tabindex="0"</code> means that the element should be focusable in sequential keyboard, this means, that this element will keep its natural state within the order it has been placed in. If an element shares the same <code>tabindex</code> number, it will go in source order.</li>
+<li><code>tabindex="1"</code> this value can be between 1 and 1000 and this elevates the priority in tab order. Normally where this may need to be used, it indicates that there could possible be an issue with HTML and CSS so it would probably be easier to amend this.</li>
+<li><code>tabindex</code> should not be used as a replacement for using the correct syntax, e.g. a div element for a button.</li>
+</ul>
+<h2 id="colour-contrast">Colour Contrast</h2>
+<p>Part of the WCAG 2.1 guidelines level AA requires colours for normal text to reach 4.5:1 or above and for large text to reach 3:1. The <a href="https://webaim.org/resources/contrastchecker/">WebAIM contrast checker</a> is a good tool for this.</p>
+<p>Large text is defined at 24px or 2.4rem or higher.</p>
+<p>Logos and brands are exempt from the contrast rules as well as any images of text.</p>
+<p>Input controls, buttons, icons and charts need to have a contrast ratio of 3:1 the exception to this is if the control is disabled.</p>
+<h3 id="additional-contrast-tools">Additional Contrast Tools</h3>
+<div class="chrome-tab">
+<img src="https://primarysite-stage.s3.amazonaws.com/theme/AmandaMobileFirst/chrome-tools-1.jpg" width="200px">
+<img src="https://primarysite-stage.s3.amazonaws.com/theme/AmandaMobileFirst/chrome-tools.jpg" width="200px">
+</div>
+<p>Chrome currently has tools to help adjust colours within this threshold. If you select a colour that is already in use, it will display if the colour passes contrast, click on the down arrow next to the contrast ratio, it will expand and reveal the thresholds, if you click on the Aa button it will introduce two lines into the colour palette above to guide you to where you need to be for the colour to pass contrast checker.</p>
+<p>In most instances, correct colours will be given to you by the designer, however if adding something new, or in process of retrofit, this tool is particularly useful.</p>
+<h2 id="video">Video</h2>
+<p>Videos on websites are becoming more and more common place as a way of portraying in a more impactful way something that is important. This could be a welcome from the headteacher video, a school tour, or a homepage video background. Each of these types needs to be understood carefully to understand the best ways of allowing all users a good way of experiencing this video.</p>
+<ul>
+<li><strong>Audio description of visual information</strong> - This is used to provide information to a video that is visual only, this maybe a school tour or a homepage video background. It is important in these situations to describe the content for all users but only if the video has an important message to portray.</li>
+<li><strong>Captions</strong> - Also referred to as subtitles, provide a story for users who are deaf or hard of hearing. They also provide an opportunity for people who may not be able to have their sound on to understand what is going on in the video. They are synchronised with the video audio and are normally displayed when the user turns them on.</li>
+<li><strong>Transcripts</strong> - A transcript is a body of text used to describe the video, it’s not in addition to the video, as most people who use this technology will not use the video aspect.  It is supposed to be a basic text version of speech and surrounding interactions that are important in helping the user understand the content.</li>
+<li><strong>Sign Language</strong> - Where hand and arm movements along with facial expressions and body positions are used to convey meaning. This is a difficult thing to do and can be quite costly to maintain, most accessibility policies do not require this as the other ways should be sufficient enough to convey meaning.</li>
+</ul>
+<p>It is important to stress, that PrimarySites responsibility only applies to a) providing captions for Videos we have produced and b) Transcripts we implement that are provided by the school or trust (for example Videos they have shot and PrimarySite upload). We do not need to worry about video’s uploaded by a school or Trust through the content block. We can provide this service on request and this will become a chargeable job.</p>
+<h3 id="video-requirements">Video Requirements</h3>
+<p>With each video uploaded through the theme we need to make sure that</p>
+<ul>
+<li>Each video has a descriptive <code>aria-label</code>.</li>
+<li>Each video has a caption or transcript where appropriate.</li>
+<li>Any video does not flash more then 3 times a second.</li>
+</ul>
+<h3 id="captions">Captions</h3>
+<p>Captions need to be provided on videos that are heavy on the audio content, this particularly applies to interview type videos, and videos with a lot of spoken words.</p>
+<ul>
+<li>Captions need to be written in <a href="https://www.w3.org/TR/webvtt1/">WEBVTT format</a> this format dictates the text between a certain period of time as set by the interpreter.</li>
+<li>Each queue block, which is a period of time, must contain no more than 32 characters to allow it to be rendered correctly.</li>
+<li>For ease of implementation videos can be uploaded through YouTube privately to create the WEBVTT format. A tutorial for this can be found here. <mark>Insert Link here</mark>.</li>
+</ul>
+<h3 id="descriptive-transcripts">Descriptive Transcripts</h3>
+<p>A transcript needs to be provided for videos that are visually important or set a context on the website.  These could be a school tour, or a video background website.<br>
+This transcript should be provided by PrimarySite if it’s a video we have created, or by the school or trust if it’s a video that they have created.</p>
+<ul>
+<li>An example of how this that could be implemented is <code>&lt;video controls src="" aria-label="around the school" aria-describedby="transcript"&gt;&lt;/video&gt;&lt;div id="transcript" class="sr-only"&gt;Description goes here&lt;/video&gt;</code> with the class <code>sr-only</code> allowing the content to be hidden from the desktop user but not from the screen reader user.<br>
+87</li>
+</ul>
+<h2 id="audio">Audio</h2>
+<h2 id="sentences-as-paragraphs">Sentences as paragraphs</h2>
+<h2 id="additional-tools">Additional Tools</h2>
+<p>There are several different tools available on the market to help with troubleshooting any issues that you may have in regards to accessibility.</p>
+<p><a href="https://chrome.google.com/webstore/detail/axe-web-accessibility-tes/lhdoppojpmngadmnindnejefpokejbdd">AXE</a> - Is another chrome extension, this one works in the developer toolbar, it works in a similar way to Wave but in certain areas has a more in depth explanation and solution package.</p>
+<p><a href="https://chrome.google.com/webstore/detail/wave-evaluation-tool/jbbplnpkjmmeebjpijfedlgcdilocofh">Wave</a> - Is a chrome extension tool that is produced by WebAIM allows a human valuation of content and allows the user to learn more about accessibility. It provides visual information and tips and tricks for how to improve.</p>
+<p><a href="https://webaim.org/resources/contrastchecker/">WebAim Contrast Checker</a> - A tool mentioned in this documentation that is useful for checking that colours for text pass the minimum requirements as set out by WCAG 2.1 AA.</p>
+<h2 id="updates">Updates</h2>
+<p>WCAG 2.0 was released 11th December 2008, WCAG 2.1 was released June 5th 2018 as an addition to 2.0.  This means that the guidelines are nearly 12 years old. The new version is currently being written, and is under the project codename <a href="https://www.w3.org/WAI/GL/task-forces/silver/work-statement">silver</a>.</p>
+<p>First draft of new guidelines is going to be released in late 2021 and final guidelines are to be released late 2022.</p>
+<p>This release will also move away from the A, AA and AAA classification and changing to bronze, silver and gold classification, which will be a points based system instead.  This gives websites the opportunity to work towards accessibility for the majority of people instead of a pass fail exercise.</p>
+<p>More information about this can be found on <a href="https://myaccessible.website/accessibility-expert/ag-3.0">My Accessible Website</a></p>
+<h2 id="random-notes">Random notes</h2>
+<ul>
+<li>need to remove the vertical line on the title page.</li>
+<li>Add bypass blocks - skip to content used for keyboard users.</li>
+</ul>
+</div>
+</body>
+
+</html>

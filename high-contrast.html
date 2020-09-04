@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>High Contrast Mode</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#high-visibility-mode-documentation">High Visibility Mode Documentation</a>
+<ul>
+<li><a href="#about-high-visibility-mode">About High Visibility Mode</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#live-preview">Live Preview</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href="#implementation">Implementation</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="high-visibility-mode-documentation">High Visibility Mode Documentation</h1>
+<h2 id="about-high-visibility-mode">About High Visibility Mode</h2>
+<p>High Visibility mode has been introduced as part of the accessibility project for compliance with legal requirements. It allows to switch between Full Media and High Visibility Modes by simple click of a button.</p>
+<p>When in High-Visibility mode, the current styling on the website will be disabled and a special contrast styling is used to ensure high visibility and ease of use for those with visual impairments.</p>
+<h2 id="features">Features</h2>
+<p>Current features of the High Visibility Mode are:</p>
+<ul>
+<li>Changing between High Visibility and Full Media Modes</li>
+<li>Ability to have the High Visibility button anywhere on the page</li>
+<li>Stays active once selected (you can go to different pages without having to re-active high contrast mode)</li>
+<li>Ability to override the default stylesheet from BuildAssets</li>
+<li>Displays outline for keyboard navigation</li>
+<li>Two versions of implementation - one for all users, and one for logged out users only</li>
+</ul>
+<h2 id="live-preview">Live Preview</h2>
+<p>The below is just an example of functionality for preview purposes only:</p>
+<iframe scrolling="no" title="High Vis - DEMO ONLY" src="https://codepen.io/ggodzilogodlewski/embed/43867db2f1559162fbfe2d8fcbadbd05?height=393&amp;theme-id=light&amp;default-tab=result" allowfullscreen="true" width="100%" height="393">&#10;  See the Pen <a href="https://codepen.io/ggodzilogodlewski/pen/43867db2f1559162fbfe2d8fcbadbd05">High Vis - DEMO ONLY</a> by Grzegorz Godzi&#322;o-Godlewski&#10;  (<a href="https://codepen.io/ggodzilogodlewski">@ggodzilogodlewski</a>) on <a href="https://codepen.io">CodePen</a>.&#10;</iframe>
+<h4 id="demo--example-implementation">Demo / Example Implementation</h4>
+<p><a href="https://demoggg2.stage-primarysite.net/">High Visibility Mode Demo / Example</a></p>
+<p><a href="https://high-visibility-mode-one.stage-primarysite.net/">High Visibility Mode Demo One / Custom Stylesheet + High Contrast Styling for Lightbox</a></p>
+<p><a href="https://high-visibility-mode-two.stage-primarysite.net/">High Visibility Mode Demo Two / Logged out users only</a></p>
+<h2 id="implementation">Implementation</h2>
+<p><strong>Default Implementation:</strong></p>
+<p>By default this should be implemented into the Master Build Template so no extra work would be required*. Should that not be the case, then please refer to the following instructions:</p>
+<p>In base.html, core.homepage.html and any other html files in which you are pulling in CSS stylesheets, include following classes into your stylesheets :</p>
+<pre><code>style-swap current-stylesheet
+</code></pre>
+<p>so your stylesheet include looks like below:</p>
+<pre><code> &lt;link rel="stylesheet" type="text/css" class="style-swap current-stylesheet" href="{% theme_asset_file style.css %}"&gt;
+</code></pre>
+<p>In base.html include the following script:</p>
+<pre><code>&lt;script type="text/javascript" src="{% theme_asset_file_from BuildAssets contrastMode-min.js %}"&gt;&lt;/script&gt;
+</code></pre>
+<p>In theme editor create custom.js** file, include it in your base.html <em><strong>(make sure that it sits below the contrastMode-min.js)</strong></em> and include the following code:</p>
+<pre><code>/* Contrast Mode
+======================================*/
+const contrastMode = new ContrastMode({
+ contrastMode: {
+  stylesFile: '/theme/BuildAssets/contrast.css',
+  }, 
+});
+</code></pre>
+<p>In base.html just below container include the following code for scroll to content button:</p>
+<pre><code>&lt;a href="#scrolltocontent" class="scroll-to-content high-visibility-only"&gt;Scroll to content&lt;/a&gt;
+</code></pre>
+<p>In content container in base.html please include the following ID. This will allow for the above button to work:</p>
+<pre><code>scrolltocontent
+</code></pre>
+<p>In footer*** include the following code:</p>
+<pre><code>&lt;li id="contrast-mode-toggle"&gt;&lt;a href="#!"&gt;High Visibility Mode&lt;/a&gt;&lt;/li&gt;
+</code></pre>
+<p>In style.css you will need to include the below code:</p>
+<pre><code>/* High Visibility Mode
+========================*/
+#contrast-mode-toggle {
+  cursor: pointer;
+}
+
+/* To go into central place */
+.accessibility-statement p {
+  padding-bottom: 10px;
+}
+
+.high-visibility-only {
+  display: none;
+}
+
+.hv-only {
+  display: none;
+}
+
+.container a:focus,
+.container div:focus,
+.container button:focus,
+.container input:focus,
+.container textarea:focus {    
+  outline: 3px solid rgba(0,0,0,0.5);
+}
+</code></pre>
+<p>That’s all for the standard implementaton. The above should pull in the required assets and allow for switching between high visibility and full media modes. For Custom Stylesheet and Logged out users only Implementations please skip to lower part of the document.</p>
+<p><strong>Explanation:</strong></p>
+<ul>
+<li>
+<p><em>no extra work would be required</em>* - It is very likely to be included in master build template. Some sites might require tweaks due to their complexity/age and will require using a custom stylesheet. This can be achieved by changing the stylesFile to match theme of the particular website e.g.<br>
+from<br>
+<code>stylesFile: '/theme/BuildAssets/contrast.css',</code><br>
+to<br>
+<code>stylesFile: '/theme/yourTheme/contrast.css',</code></p>
+</li>
+<li>
+<p><em>In theme editor create custom.js</em>** - This is the default where we normally store scripts. This is subject to agreement/change.</p>
+</li>
+<li>
+<p>In footer*** - This is the default place where it would sit, however the location of the button can be anywhere on the site as long as it has the following ID:<br>
+<code>id="contrast-mode-toggle</code></p>
+</li>
+</ul>
+<p><strong>Custom Stylesheet Implementation</strong></p>
+<p>There might be a necessity to add in a custom stylesheet for high contrast mode on a build due to it having bespoke features or elements that are not covered by main contrast.css. To resolve this issue you will have to implement a custom stylesheet and do special styling there.</p>
+<p>In theme editor create a file called contrast-custom.css</p>
+<p>In base.html under your stylesheets include the above stylesheet preferrably under all existing stylesheets:</p>
+<pre><code>&lt;link rel="stylesheet" type="text/css" href="{% theme_asset_file contrast-custom.css %}"&gt;
+</code></pre>
+<p>*<em>Make sure that it doesn’t have any classes in it so it doesn’t get removed when initialising contrast mode.</em></p>
+<p>In your previously created custom.js replace the contrast mode code with the following:</p>
+<pre><code>/* Contrast Mode
+======================================*/
+const contrastMode = new ContrastMode({
+ contrastMode: {
+  stylesFile: '/theme/BuildAssets/contrast.css',
+  }, 
+  activeState: {
+    activeHolder: 'body', // element getting active class null = trigger, else desired selector
+	},
+});
+</code></pre>
+<p>The above code still pulls in the stylesheet from BuildAssets, however the main change is that it adds the activeState class to body tag which allows to add custom styling by targetting the class below:</p>
+<blockquote>
+<p><code>contrast-mode-active</code></p>
+</blockquote>
+<p>For example to target the body and change it’s colour (to overwrite the default contrast mode styling) you would do the following code in contrast-custom.css:</p>
+<pre><code>.contrast-mode-active {
+ background: #333; 
+}
+</code></pre>
+<p>That way you can target any element you wish, while still having the contrast.css styling working.</p>
+<p><strong>Implementation of High Visibility for <em>Logged Out</em> users only:</strong><br>
+The main implementation is the same, however there are two steps that change:</p>
+<p>In base.html you will need to include the following code (in footer by default)</p>
+<pre><code>{% if user.is_authenticated %}
+    &lt;li id="contrast-mode-toggle"&gt;&lt;a href="#!"&gt;High Visibility Mode&lt;/a&gt;&lt;/li&gt;
+ {% else %}
+     &amp;nbsp;
+ {% endif %}
+</code></pre>
+<p>The above will only have the trigger visible if user is logged out. If user is logged in, trigger will be hidden.</p>
+<p>In custom.js you will have to paste/replace the following code:</p>
+<pre><code>/* Contrast Mode - Disabled for Logged in users
+======================================*/
+document.addEventListener("DOMContentLoaded", () =&gt; {
+  const adminBar = document.querySelector(".admin-bar");
+  const container = document.querySelector("body");
+  const contrastOptions = {
+   contrastMode: {
+    stylesFile: '/theme/BuildAssets/contrast.css',
+    }, 
+    activeState: {
+      activeHolder: 'body', 
+    },
+  }
+  let contrastMode;
+
+  !container.contains(adminBar) ? (contrastMode = new ContrastMode(contrastOptions)) : null;
+
+});
+</code></pre>
+<p>The above code creates an event listener when all of the DOM elements are loaded and will check if admin bar is present. If it isn’t, then high contrast mode will be ran and enabled, however if admin bar is present, then the code won’t run and high contrast mode will be disabled until user logs out.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>
