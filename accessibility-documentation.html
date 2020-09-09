@@ -1,16 +1,40 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex">
   <title>Accessibility Documentation</title>
   <link rel="stylesheet" href="https://stackedit.io/style.css" />
 </head>
 
 <body class="stackedit">
-  <div class="stackedit__html"><h1 id="accessibility-documentation">Accessibility Documentation</h1>
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#accessibility-documentation">Accessibility Documentation</a>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#initial-requirements">Initial Requirements</a></li>
+<li><a href="#aria-attributes">ARIA Attributes</a></li>
+<li><a href="#images">Images</a></li>
+<li><a href="#links">Links</a></li>
+<li><a href="#navigation">Navigation</a></li>
+<li><a href="#keyboard-operation">Keyboard Operation</a></li>
+<li><a href="#colour-contrast">Colour Contrast</a></li>
+<li><a href="#video">Video</a></li>
+<li><a href="#additional-tools">Additional Tools</a></li>
+<li><a href="#updates">Updates</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="accessibility-documentation">Accessibility Documentation</h1>
 <h2 id="introduction">Introduction</h2>
 <p><em>"Accessibility is the practice of making your websites usable by as many people as possible. We traditionally think of this as being about people with disabilities, but the practice of making sites accessible also benefits other groups such as those using mobile devices, or those with slow network connections.</em></p>
 <p><em>You might also think of accessibility as treating everyone the same, and giving them equal opportunities, no matter what their ability or circumstances. Just as it is wrong to exclude someone from a physical building because they are in a wheelchair (modern public buildings generally have wheelchair ramps or elevators), it is also not right to exclude someone from a website because they have a visual impairment. We are all different, but we are all human, and therefore have the same human rights.</em></p>
@@ -38,12 +62,12 @@
 <p>PrimarySites approach to accessibility is focused primarily on the website and not the CMS.</p>
 <h3 id="primarysite’s-commitment-statement-for-accessibility">PrimarySite’s Commitment Statement for Accessibility</h3>
 <p>All Trust websites from September 1st 2018 must strive as much as possible to reach the accessibility standards as set out by the government guidance to WCAG 2.1 level AA. A decision has also been made to ensure that all SEN websites meet this criteria from the 1st August 2020. It is estimated that there will be around 3 trust/SEN websites every month.</p>
-<h3 id="additional-documentation">Additional Documentation</h3>
+<!--<h3 id="additional-documentation">Additional Documentation</h3>
 <ul>
 <li>Case Studies == link to be added ==</li>
 <li>Assistive technologies ==link to be added ==</li>
 <li>Youtube WEBVTT documentation <mark>link to be added</mark></li>
-</ul>
+</ul> -->
 <h2 id="initial-requirements">Initial Requirements</h2>
 <p>In every website that we build, where possible we should be striving to achieve modern web standards, of course because of our customers and our customers requirements this might not always be 100% achievable, all we can do is try.<br>
 To help us achieve as much of an accessible website as possible there are some steps and practices that we need to undertake.</p>
@@ -199,28 +223,28 @@ The importance into spending time into links and how they are presented to the u
 </ul>
 <iframe height="300" width="100%" scrolling="no" title="Buttons" src="https://codepen.io/acreese/embed/e2317df5da7cdaf9679d6bb91fc3820f?height=265&amp;theme-id=dark&amp;default-tab=result" allowfullscreen="true">&#10;  See the Pen <a href="https://codepen.io/acreese/pen/e2317df5da7cdaf9679d6bb91fc3820f">Buttons</a> by Amanda&#10;  (<a href="https://codepen.io/acreese">@acreese</a>) on <a href="https://codepen.io">CodePen</a>.&#10;</iframe>
 <h3 id="multi-line-text-links">Multi Line Text Links</h3>
-<p>== This needs phrasing better ==</p>
-<ul>
-<li>Depending on the user behaviour, depends what a user might anticipate is the clickable area.</li>
-<li>In this instance, links to certain pages can become confusing as they have multiple lines of text in</li>
-<li>When read by a screenreader without any intervention, the link will read ‘Temple Hill Primary Academy View Temple Hill’</li>
-<li>By adding in <code>aria-label="View Temple Hill Primary Academy"</code> to the a tag of this element instead of it reading out all text in the a tag, it’ll ignore it and only read out the aria label.</li>
-<li>In this example, both temple hill and west hill have been done this way and oakfield has not.</li>
-</ul>
+<p>Depending on the expected behaviour of the link, and how a user interprets it depends on what a user may expect to be the clickable area. In the example below, a user may anticipate clicking on the whole area or just a line of text.<br>
+This is a very visual example, and you can see that there is a very distinct hierarchy with this to indicate which part is important or clickable. For a visually impaired person, who someone who might need assistive technologies it is impossible for them to see any sort of hierarchy so a screen reader will read this as ‘Temple Hill Primary Academy View Temple Hill’ which can be confusing to the user with duplicated content. By adding in <code>aria-label="View Temple Hill Primary Academy"</code> to the a tag of this element instead of it reading out all text in the a tag, it’ll ignore it and only read out the aria label.<br>
+In the example below, Temple Hill has been done this way, Oakfield has not. If you listen to the sound clips you should hear the difference.</p>
 <iframe height="400" width="100%" scrolling="no" title="Section - Accessibility" src="https://codepen.io/acreese/embed/37af3c1a67271979b0576fc11b9074af?height=265&amp;theme-id=dark&amp;default-tab=result" allowfullscreen="true">&#10;  See the Pen <a href="https://codepen.io/acreese/pen/37af3c1a67271979b0576fc11b9074af">Section - Accessibility</a> by Amanda&#10;  (<a href="https://codepen.io/acreese">@acreese</a>) on <a href="https://codepen.io">CodePen</a>.&#10;</iframe>
 <p>Example of how screenreader will read these.</p>
 <figure>
     <figcaption>Listen to Temple Hill</figcaption>
-    
-    
-</figure> 
-== needs converting when downloaded ==
+  </figure>    
+    <audio controls>
+      <source src="https://primarysite-stage.s3.amazonaws.com/theme/AmandaMobileFirst/link_examples_-_1a.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+    </audio>
+
+
 <figure>
     <figcaption>Listen to Oakfield</figcaption>
-    
-    
 </figure>
-== needs converting when downloaded ==
+    <audio controls>
+      <source src="https://primarysite-stage.s3.amazonaws.com/theme/AmandaMobileFirst/link_examples_-_1b.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+    </audio>
+
 <h3 id="short-text-links">Short Text Links</h3>
 <p>Short text for accessibility could be confusing to the user, but it also could have a negative affect on a website’s SEO. Sometimes however this isn’t always achievable as putting a full understandable title could compromise the design and layout.</p>
 <p><strong>Examples of short text links are</strong></p>
@@ -323,7 +347,7 @@ Whilst strictly not a user, a lot of the other assistive technologies that are i
 <ul>
 <li>Captions need to be written in <a href="https://www.w3.org/TR/webvtt1/">WEBVTT format</a> this format dictates the text between a certain period of time as set by the interpreter.</li>
 <li>Each queue block, which is a period of time, must contain no more than 32 characters to allow it to be rendered correctly.</li>
-<li>For ease of implementation videos can be uploaded through YouTube privately to create the WEBVTT format. A tutorial for this can be found here. <mark>Insert Link here</mark>.</li>
+<li>For ease of implementation videos can be uploaded through YouTube privately to create the WEBVTT format.</li>
 </ul>
 <h3 id="descriptive-transcripts">Descriptive Transcripts</h3>
 <p>A transcript needs to be provided for videos that are visually important or set a context on the website.  These could be a school tour, or a video background website.<br>
@@ -332,8 +356,6 @@ This transcript should be provided by PrimarySite if it’s a video we have crea
 <li>An example of how this that could be implemented is <code>&lt;video controls src="" aria-label="around the school" aria-describedby="transcript"&gt;&lt;/video&gt;&lt;div id="transcript" class="sr-only"&gt;Description goes here&lt;/video&gt;</code> with the class <code>sr-only</code> allowing the content to be hidden from the desktop user but not from the screen reader user.<br>
 87</li>
 </ul>
-<h2 id="audio">Audio</h2>
-<h2 id="sentences-as-paragraphs">Sentences as paragraphs</h2>
 <h2 id="additional-tools">Additional Tools</h2>
 <p>There are several different tools available on the market to help with troubleshooting any issues that you may have in regards to accessibility.</p>
 <p><a href="https://chrome.google.com/webstore/detail/axe-web-accessibility-tes/lhdoppojpmngadmnindnejefpokejbdd">AXE</a> - Is another chrome extension, this one works in the developer toolbar, it works in a similar way to Wave but in certain areas has a more in depth explanation and solution package.</p>
@@ -344,12 +366,9 @@ This transcript should be provided by PrimarySite if it’s a video we have crea
 <p>First draft of new guidelines is going to be released in late 2021 and final guidelines are to be released late 2022.</p>
 <p>This release will also move away from the A, AA and AAA classification and changing to bronze, silver and gold classification, which will be a points based system instead.  This gives websites the opportunity to work towards accessibility for the majority of people instead of a pass fail exercise.</p>
 <p>More information about this can be found on <a href="https://myaccessible.website/accessibility-expert/ag-3.0">My Accessible Website</a></p>
-<h2 id="random-notes">Random notes</h2>
-<ul>
-<li>need to remove the vertical line on the title page.</li>
-<li>Add bypass blocks - skip to content used for keyboard users.</li>
-</ul>
-</div>
+
+    </div>
+  </div>
 </body>
 
 </html>
